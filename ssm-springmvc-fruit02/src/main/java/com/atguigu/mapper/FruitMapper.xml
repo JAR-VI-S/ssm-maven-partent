@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.mapper.FruitMapper">
+  <resultMap id="BaseResultMap" type="com.atguigu.pojo.Fruit">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="fname" jdbcType="VARCHAR" property="fname" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="fcount" jdbcType="INTEGER" property="fcount" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, fname, price, fcount, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer"  resultMap ="BaseResultMap">
+    select * from t_fruit where id = #{id,jdbcType=INTEGER}
+  </select>
+  <!-- 查询出所有的水果库存信息 -->
+  <select id="getFruitList"  resultType="fruit">
+    select * from t_fruit
+  </select>
+  <select id="getFruitListByKey" parameterType="string" resultType="fruit">
+    <!-- 根据关键字,查询出所有的水果库存信息 -->
+    select * from t_fruit where fname like '%${keyword}%' or remark like '%${keyword}%'
+  </select>
+
+  <select id="getFruitListByKeyAndPage"  resultType="fruit">
+    <!-- 根据关键字,查询出所有的水果库存信息 -->
+    select * from t_fruit where fname like '%${keyword}%' or remark like '%${keyword}%' limit #{pageNo},5
+  </select>
+
+  <select id="getCountByKey" parameterType="string" resultType="integer">
+    select count(*) from t_fruit where fname like '%${keyword}%' or remark like '%${keyword}%'
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_fruit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.atguigu.pojo.Fruit">
+    insert into t_fruit ( fname, price,
+      fcount, remark)
+    values (#{fname,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER},
+      #{fcount,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.atguigu.pojo.Fruit">
+    insert into t_fruit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fname != null">
+        fname,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="fcount != null">
+        fcount,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fname != null">
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="fcount != null">
+        #{fcount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.pojo.Fruit">
+    update t_fruit
+    <set>
+      <if test="fname != null">
+        fname = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="fcount != null">
+        fcount = #{fcount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atguigu.pojo.Fruit">
+    update t_fruit
+    set fname = #{fname,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      fcount = #{fcount,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

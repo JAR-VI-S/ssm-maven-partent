@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ssm-spring-test1" />
+        <module name="ssm-springmvc-test1" />
+        <module name="ssm01-maven-partent" />
+        <module name="ssm-spring-book" />
+        <module name="ssm02-maven-association" />
+        <module name="ssm03-maven-qqzone" />
+        <module name="ssm-spring-jdbc" />
+        <module name="ssm-spring-test2" />
+        <module name="ssm-springmvc-fruit02" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ssm-spring-test2 (1)" target="8" />
+      <module name="ssm-springmvc-fruit" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-parameters" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ssm-maven-partent" options="" />
+      <module name="ssm-spring-book" options="" />
+      <module name="ssm-spring-jdbc" options="" />
+      <module name="ssm-spring-test1" options="" />
+      <module name="ssm-spring-test2" options="" />
+      <module name="ssm-springmvc-fruit" options="" />
+      <module name="ssm-springmvc-fruit02" options="" />
+      <module name="ssm-springmvc-test1" options="" />
+      <module name="ssm01-maven-partent" options="" />
+      <module name="ssm02-maven-association" options="" />
+      <module name="ssm03-maven-qqzone" options="" />
+    </option>
+  </component>
+</project>

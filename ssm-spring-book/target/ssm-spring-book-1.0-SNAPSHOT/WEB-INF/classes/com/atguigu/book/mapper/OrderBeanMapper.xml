@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.book.mapper.OrderBeanMapper">
+    <insert id="addOrderBean" parameterType="orderBean" useGeneratedKeys="true" keyProperty="id">
+        insert into t_order
+        values (0, #{orderNo}, #{orderDate}, #{orderMoney}, #{orderCount}, #{orderStatus}, #{user.id})
+    </insert>
+    <select id="getOrderBeanList" parameterType="user" resultType="orderBean">
+        select *
+        from t_order
+        where user = #{id}
+        order by orderDate desc
+    </select>
+</mapper>

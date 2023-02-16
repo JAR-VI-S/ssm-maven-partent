@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.book.mapper.CartItemMapper">
+  <select id="getCartItemListByUserId" resultType="cartItem">
+    select id,book as'book.id',bookName,price,buyCount,user as 'user.id' from t_cart where user = #{value}
+  </select>
+  <insert id="addCartItem"  parameterType="cartItem" >
+    insert into t_cart values(0,#{book.id},#{bookName},#{price},#{buyCount},#{user.id})
+  </insert>
+  <update id="updateCartItem" parameterType="cartItem">
+    update t_cart set buyCount = #{buyCount} where id = #{id}
+  </update>
+  <update id="delCartItem" parameterType="cartItem">
+    delete from t_cart where id = #{id}
+  </update>
+</mapper>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="/static/script/vue.min.js"></script>
+  <script src="/static/script/axios.min.js"></script>
+  <script>
+    window.onload=function(){
+      var vue = new Vue({
+        el:"#div0",
+        data:{
+          userName:"jim",
+          password:"123"
+        },
+        methods:{
+          ajax01:function(){
+            axios({
+              method:"get",
+              url:"/hello08/h01",
+              params:{
+                userName:this.userName,
+                password:this.password
+              }
+            }).then(resp=>{
+              alert(resp.data);
+            }).catch(reason=>{
+              alert(reason.data);
+            });
+          }
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+  <div id="div0">
+    userName:<input type="text" name="userName" v-model="userName"/><br/>
+    password:<input type="password" name="password" v-model="password"/><br/>
+    <input type="button" value="发送带有请求参数的异步请求，返回普通字符串给客户端" @click="ajax01"/>
+  </div>
+</body>
+</html>

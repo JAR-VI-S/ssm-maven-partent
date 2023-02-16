@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <!-- appender：日志的编写者
+         name="STDOUT" standard out  标准输出
+         class="org.apache.log4j.ConsoleAppender"  表示当前日志往控制台输出。除了控制台，我们还有文件  FileAppender , DailyFileAppender
+         layout 日志编写的格式
+
+         logger:具体的一个日志器
+         name="java.sql" 表示java.sql要进行日志记录
+         level:debug     日志的级别。日志的级别常见的有：debug(调试信息) , info(一般信息) , warn(警告信息) , error(错误信息)
+
+         以下一段配置表示启用"STDOUT"这个日志记录器，然后日志记录的级别是debug级别，那么只要>=debug的信息都要打印出来
+         所以，开发阶段，一般我们都会调试成debug级别。然后部署之后，我们都会调试成warn级别
+         <root>
+            <level value="debug" />
+            <appender-ref ref="STDOUT" />
+         </root>
+
+     -->
+    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+        <param name="Encoding" value="UTF-8" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p %d{MM-dd HH:mm:ss,SSS} %m  (%F:%L) \n" />
+        </layout>
+    </appender>
+    <logger name="java.sql">
+        <level value="debug" />
+    </logger>
+    <logger name="org.apache.ibatis">
+        <level value="info" />
+    </logger>
+    <root>
+        <level value="debug" />
+        <appender-ref ref="STDOUT" />
+    </root>
+</log4j:configuration>

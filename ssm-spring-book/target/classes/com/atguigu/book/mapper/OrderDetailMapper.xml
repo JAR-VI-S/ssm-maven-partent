@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.book.mapper.OrderDetailMapper">
+<insert id="addOrderDetail" parameterType="orderDetail">
+    insert into t_order_detail values(0,#{book.id},#{bookName},#{price},#{buyCount},#{orderBean.id})
+</insert>
+</mapper>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.atguigu.maven</groupId>
+    <artifactId>ssm-maven-partent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>ssm01-maven-partent</module>
+        <module>ssm02-maven-association</module>
+        <module>ssm02-maven-association</module>
+        <module>ssm03-maven-qqzone</module>
+        <module>ssm-spring-test1</module>
+        <module>ssm-spring-test2</module>
+        <module>ssm-spring-jdbc</module>
+        <module>ssm-springmvc-test1</module>
+        <module>ssm-springmvc-fruit02</module>
+        <module>ssm-spring-book</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <mybatis.version>3.5.7</mybatis.version>
+        <log4j.version>1.2.17</log4j.version>
+        <mysql.jdbc.version>8.0.27</mysql.jdbc.version>
+        <junit.version>4.12</junit.version>
+        <spring.version>5.3.18</spring.version>
+        <druid.version>1.0.31</druid.version>
+        <logback.version>1.2.3</logback.version>
+        <servlet.version>3.1.0</servlet.version>
+        <thymeleaf-spring5.version>3.0.12.RELEASE</thymeleaf-spring5.version>
+        <mybatis-spring>2.0.6</mybatis-spring>
+        <jackson-databind>2.12.1</jackson-databind>
+        <junit-jupiter-api.version>5.7.0</junit-jupiter-api.version>
+        <pagehelper.version>5.2.0</pagehelper.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <!-- junit测试 -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- MySQL驱动 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.jdbc.version}</version>
+            </dependency>
+            <!-- Mybatis核心 -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <!-- log4j日志文件 -->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aspects</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <!-- SpringMVC -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!-- ServletAPI -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- Spring5和Thymeleaf整合包 -->
+            <dependency>
+                <groupId>org.thymeleaf</groupId>
+                <artifactId>thymeleaf-spring5</artifactId>
+                <version>${thymeleaf-spring5.version}</version>
+            </dependency>
+            <!-- Mybatis 和 Spring 的整合包 -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring}</version>
+            </dependency>
+            <!--ajax-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson-databind}</version>
+            </dependency>
+            <!-- junit5 -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit-jupiter-api.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!--Mybatis 的分页插件-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+        </dependencies>
+        <!-- 控制Maven在构建过程中相关配置 -->
+    </dependencyManagement>
+</project>

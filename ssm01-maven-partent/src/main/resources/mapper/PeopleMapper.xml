@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.mybatis.mapper.PeopleMapper">
+    <insert id="addPeople" parameterType="Peoples">
+        insert into t_people
+        values (0, #{pname}, #{address})
+    </insert>
+    <!-- 当实体类中的属性名称和表中的列名称不一致时 ,1.可以使用resultMap,在resultMap标签属性中定义类中属性名和数据库中表的列名之间的关系-->
+    <select id="getPeopleById" resultMap="PeoplesMap">
+        select *from t_people where id = #{value}
+    </select>
+<!--或者在sql语句中重新定义查询结果后的表列名  A  as  B -->
+    <select id="getPeopleById2" resultType="Peoples">
+        select t1.id, t1.people_pname as pname, t1.people_address as address from t_people t1 where id = #{id}
+    </select>
+
+    <resultMap id="PeoplesMap" type="Peoples">
+        <id property="id" column="id"/>
+        <result property="pname" column="people_pname"/>
+        <result property="address" column="people_address"/>
+    </resultMap>
+    <select id="getPeopleList" resultMap="PeoplesMap">
+        select *from t_people
+    </select>
+
+</mapper>

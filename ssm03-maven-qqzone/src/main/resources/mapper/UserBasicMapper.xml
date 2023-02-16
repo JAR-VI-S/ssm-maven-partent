@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.qqzone.mapper.UserBasicMapper">
+    <select id="getUserBasic" resultType="UserBasic">
+        select *
+        from t_user_basic
+        where loginId = #{loginId}
+          and pwd = #{pwd}
+    </select>
+    <select id="getUserBasicWithTopicListAndFriendList" resultMap="UserBasicWithFriendListAndTopicListResultMap">
+        SELECT t1.*,
+               t2.id AS fid,t2.nickName AS f_nickName,t2.headImg AS f_headImg,
+               t4.id AS topicId , title , content , topicDate
+        FROM t_user_basic t1 LEFT JOIN t_friend t3 ON t1.id = t3.uid
+                             INNER JOIN t_user_basic t2 ON t3.fid = t2.id
+                             LEFT JOIN t_topic t4 ON t1.id = t4.author
+        WHERE t1.id = #{value}
+    </select>
+    <resultMap id="UserBasicResultMap" type="UserBasic">
+        <id property="id" column="id"/>
+        <result property="loginId" column="loginId"/>
+        <result property="nickName" column="nickName"/>
+        <result property="pwd" column="pwd"/>
+        <result property="headImg" column="headImg"/>
+    </resultMap>
+    <resultMap id="UserBasicWithFriendListAndTopicListResultMap" type="userBasic" extends="UserBasicResultMap">
+
+        <!-- 一个用户拥有多个好友，对多关联 -->
+        <collection property="friendList" ofType="userBasic">
+            <id property="id" column="fid"/>
+            <result property="nickName" column="f_nickName"/>
+            <result property="headImg" column="f_headImg"/>
+        </collection>
+        <!-- 一个用户拥有多个日志，对多关联 -->
+        <collection property="topicList" ofType="topic">
+            <id property="id" column="topicId"/>
+            <result property="title" column="title"/>
+            <result property="content" column="content"/>
+            <result property="topicDate" column="topicDate"/>
+        </collection>
+    </resultMap>
+
+</mapper>
